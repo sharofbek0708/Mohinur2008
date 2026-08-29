@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohinur uchun...</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(135deg, #2b0a1f, #4a0e2e, #7a1e4a, #b3315f);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hearts {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .heart {
+    position: absolute;
+    bottom: -50px;
+    font-size: 24px;
+    color: rgba(255, 182, 193, 0.85);
+    animation: floatUp linear infinite;
+    user-select: none;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 2.6em;
+    font-style: italic;
+    color: #ffd9e6;
+    text-shadow: 0 0 20px rgba(255,182,193,0.6);
+    margin-bottom: 10px;
+    animation: fadeIn 2s ease;
+  }
+
+  .subtitle {
+    font-size: 1.1em;
+    color: #ffc4d6;
+    margin-bottom: 50px;
+    opacity: 0.9;
+    animation: fadeIn 3s ease;
+  }
+
+  .poem {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    padding: 40px 30px;
+    margin-bottom: 50px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    animation: fadeIn 3.5s ease;
+  }
+  .poem p {
+    font-size: 1.25em;
+    line-height: 2em;
+    font-style: italic;
+    color: #fff0f5;
+  }
+  .poem p:last-child {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #ffd9e6;
+    font-size: 1.3em;
+  }
+
+  .counter-section {
+    margin-bottom: 60px;
+    animation: fadeIn 4s ease;
+  }
+  .counter-label {
+    font-size: 1.1em;
+    color: #ffc4d6;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .counter-box {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .counter-item {
+    background: rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 18px 22px;
+    min-width: 80px;
+    box-shadow: 0 4px 20px rgba(255,105,150,0.25);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .counter-number {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #ffe0eb;
+    text-shadow: 0 0 15px rgba(255,182,193,0.7);
+  }
+  .counter-word {
+    font-size: 0.85em;
+    color: #ffc4d6;
+    margin-top: 4px;
+  }
+
+  .since-date {
+    margin-top: 16px;
+    font-size: 0.95em;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .music-note {
+    font-size: 0.85em;
+    color: rgba(255,255,255,0.5);
+    margin-top: 40px;
+    font-style: italic;
+  }
+
+  .heart-icon {
+    display: inline-block;
+    animation: pulse 1.4s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .music-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.95em;
+    margin-bottom: 30px;
+    transition: 0.3s;
+  }
+  .music-btn:hover {
+    background: rgba(255,255,255,0.25);
+  }
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
+  <div class="title">Mohinur ❤</div>
+  <div class="subtitle">— sen uchun yozilgan kichik bir olam —</div>
+
+  <button class="music-btn" onclick="toggleMusic()">🎵 Musiqani yoqish</button>
+  <audio id="bgMusic" loop>
+    <!-- O'zingizning mp3 faylingizni shu joyga qo'shing: <source src="musiqa.mp3" type="audio/mpeg"> -->
+  </audio>
+
+  <div class="poem">
+    <p>Ko'zlaringda tong otadi,<br>
+    Kulganingda dunyo yorishadi.<br>
+    Sen borsang — bahor,<br>
+    Sen yo'q joyda — sog'inch va intizor.</p>
+    <p>Mohinur, sen mening eng go'zal kunimsan.</p>
+  </div>
+
+  <div class="counter-section">
+    <div class="counter-label">BU SAYTIMDI KURASIZMI YUQMI UNISINI BILMADIM LEKIN SHU KUNDAN BUYON SIZNI UNUTOLMAYABMAN</div>
+    <div class="counter-box">
+      <div class="counter-item">
+        <div class="counter-number" id="days">0</div>
+        <div class="counter-word">kun</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" id="hours">0</div>
+        <div class="counter-word">soat</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" id="minutes">0</div>
+        <div class="counter-word">daqiqa</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-number" id="seconds">0</div>
+        <div class="counter-word">soniya</div>
+      </div>
+    </div>
+    <div class="since-date">01.08.2025 kunidan buyon ⏳</div>
+  </div>
+
+  <div class="music-note">Har bir soniya, har bir nafas — seni sevishning yana bir sababi.</div>
+</div>
+
+<script>
+  // Yuraklar animatsiyasi
+  const heartsContainer = document.getElementById('hearts');
+  const heartSymbols = ['❤','💕','💖','💗'];
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = heartSymbols[Math.floor(Math.random()*heartSymbols.length)];
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDuration = (Math.random() * 6 + 8) + 's';
+    heart.style.fontSize = (Math.random() * 16 + 16) + 'px';
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 15000);
+  }
+  setInterval(createHeart, 700);
+
+  // Sanoq
+  const startDate = new Date('2025-08-01T00:00:00');
+  function updateCounter() {
+    const now = new Date();
+    let diff = now - startDate;
+    if (diff < 0) diff = 0;
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('seconds').textContent = seconds;
+  }
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  // Musiqa tugmasi
+  let playing = false;
+  function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    if (!music.src) {
+      alert("Musiqa fayli hali qo'shilmagan. HTML faylida 'musiqa.mp3' o'rniga o'z mp3 faylingiz nomini yozing.");
+      return;
+    }
+    if (playing) { music.pause(); } else { music.play(); }
+    playing = !playing;
+  }
+</script>
+
+</body>
+</html>
